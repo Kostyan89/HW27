@@ -1,8 +1,8 @@
 [
-    {
-        "model": "Ad",
+    {   "pk": 1,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 1,
+            "id": 1,
             "name": "Сибирская котята, 3 месяца",
             "author": "Павел",
             "price": 2500,
@@ -11,10 +11,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 2,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 2,
+            "id": 2,
             "name": "Стратегия голубого океана\n",
             "author": "Павел",
             "price": 650,
@@ -23,10 +23,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 3,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 3,
+            "id": 3,
             "name": "Принципы, Рэй Далио",
             "author": "Галина",
             "price": 555,
@@ -35,10 +35,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 4,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 4,
+            "id": 4,
             "name": "Разумный инвестор",
             "author": "Галина",
             "price": 250,
@@ -47,10 +47,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 5,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 5,
+            "id": 5,
             "name": "Розанов В. В. Уединенное",
             "author": "Борис",
             "price": 100,
@@ -59,10 +59,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 6,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 6,
+            "id": 6,
             "name": "Alice Sebold - The lovely bone\n",
             "author": "Виолетта",
             "price": 250,
@@ -71,10 +71,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 7,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 7,
+            "id": 7,
             "name": "Котята в добрые руки",
             "author": "Галина",
             "price": 100,
@@ -83,10 +83,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 8,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 8,
+            "id": 8,
             "name": "Молодая кошечка Груша",
             "author": "Галина",
             "price": 100,
@@ -95,10 +95,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 9,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 9,
+            "id": 9,
             "name": "Собака в добрые руки",
             "author": "Галина",
             "price": 150,
@@ -107,10 +107,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 10,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 10,
+            "id": 10,
             "name": "Собака Дуся в добрые руки",
             "author": "Галина",
             "price": 150,
@@ -119,10 +119,10 @@
             "is_published": false
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 11,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 11,
+            "id": 11,
             "name": "Стол из слэба и эпоксидной смолы",
             "author": "Петр",
             "price": 24000,
@@ -131,10 +131,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 12,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 12,
+            "id": 12,
             "name": "Собака в добрые руки",
             "author": "Петр",
             "price": 1500,
@@ -143,10 +143,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 13,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 13,
+            "id": 13,
             "name": "Метис овчарки в добрые руки",
             "author": "Никита",
             "price": 400,
@@ -155,10 +155,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 14,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 14,
+            "id": 14,
             "name": "Черенки петунии, рассада цветов, овощей",
             "author": "Никита",
             "price": 120,
@@ -167,10 +167,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 15,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 15,
+            "id": 15,
             "name": "Гардения Жасминовидная",
             "author": "Никита",
             "price": 550,
@@ -179,10 +179,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 16,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 16,
+            "id": 16,
             "name": "Петуния, крейзитуния, бленкет, сурфиния, калиб",
             "author": "Борис",
             "price": 89,
@@ -191,10 +191,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 17,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 17,
+            "id": 17,
             "name": "Добрый песик ищет хозяина",
             "author": "Борис",
             "price": 150,
@@ -203,10 +203,10 @@
             "is_published": false
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 18,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 18,
+            "id": 18,
             "name": "Стол лофт большой\n",
             "author": "Павел",
             "price": 13800,
@@ -215,10 +215,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 19,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 19,
+            "id": 19,
             "name": "Стол прямой прям хороший",
             "author": "Борис",
             "price": 1800,
@@ -227,10 +227,10 @@
             "is_published": true
         }
     },
-    {
-        "model": "Ad",
+    {"pk": 20,
+        "model": "ads.Ad",
         "fields": {
-            "Id": 20,
+            "id": 20,
             "name": "Котенок в добрые руки",
             "author": "Никита",
             "price": 100,
