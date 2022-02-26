@@ -1,5 +1,5 @@
 /.idea/
 /venv/
-/data/
+/datasets/
 /db.sqlite3/
 /db.sqlite3-journal/
