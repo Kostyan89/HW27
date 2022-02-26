@@ -1,12 +1,15 @@
 import json
 
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView
 
 from ads.models import Ad, Category
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class CategoryView(View):
     def get(self, request):
         categories = Category.object.all()
@@ -39,12 +42,13 @@ class CategoryDetailView(DetailView):
         return JsonResponse({
             "id": category.id,
             "name": category.name,
-        })
+        }, safe=False)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class AdView(View):
     def get(self, request):
-        ads = Ad.object.all()
+        ads = Ad.objects.all()
 
         response = []
         for ad in ads:
@@ -76,7 +80,7 @@ class AdView(View):
             "description": ad.description,
             "address": ad.address,
             "is_published": ad.is_published,
-        })
+        }, safe=False)
 
 
 class AdDetailView(DetailView):
