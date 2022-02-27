@@ -19,7 +19,7 @@ class CategoryView(View):
             response.append({
                 "id": category.id,
                 "name": category.name,
-            })
+            }, safe=False)
 
         return JsonResponse(response, safe=False)
 
@@ -45,7 +45,7 @@ class CategoryDetailView(DetailView):
         return JsonResponse({
             "id": category.id,
             "name": category.name,
-        }, safe=False)
+        })
 
 
 @method_decorator(csrf_exempt, name='dispatch')
