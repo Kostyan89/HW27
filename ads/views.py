@@ -83,7 +83,7 @@ class AdView(View):
             "description": ad.description,
             "address": ad.address,
             "is_published": ad.is_published,
-        }, safe=False)
+        })
 
 
 class AdDetailView(DetailView):
