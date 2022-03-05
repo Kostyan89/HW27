@@ -9,9 +9,10 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from ads.models import Ad, Category
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class CategoryView(View):
-    def get(self, request):
+class CategoryListView(ListView):
+    model = Category
+
+    def get(self, request, *args, **kwargs):
         categories = Category.objects.all()
 
         response = []
@@ -23,7 +24,41 @@ class CategoryView(View):
 
         return JsonResponse(response, safe=False)
 
-    def post(self, request):
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CategoryUpdateView(UpdateView):
+    model = Category
+    fields = ["name"]
+
+    def post(self, reqeust, *args, **kwargs):
+        super().post(reqeust, *args, **kwargs)
+
+        ad_data = json.loads(reqeust.body)
+        self.object.name = ad_data["name"]
+        self.object.save()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "name": self.object.name,
+        })
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CategoryDeleteView(DeleteView):
+    model = Category
+    success_url = "/"
+
+    def delete(self, request, *args, **kwargs):
+        super().delete(request, *args, **kwargs)
+
+        return JsonResponse({"status": "ok"}, status=200)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CategoryCreateView(CreateView):
+    model = Category
+
+    def post(self, request, *args, **kwargs):
         category_data = json.loads(request.body)
 
         category = Category.objects.create(
@@ -46,7 +81,6 @@ class CategoryDetailView(DetailView):
             "id": category.id,
             "name": category.name,
         })
-
 
 
 class AdListView(ListView):
