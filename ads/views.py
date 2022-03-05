@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
 from ads.models import Ad, Category
 
@@ -62,6 +62,7 @@ class AdListView(ListView):
                 "name": ad.name,
                 "author": ad.author,
                 "price": ad.price,
+                "user_id": ad.user_id,
             })
         return JsonResponse(response, safe=False)
 
@@ -69,7 +70,7 @@ class AdListView(ListView):
 @method_decorator(csrf_exempt, name='dispatch')
 class AdCreateView(CreateView):
     model = Ad
-    fields = ["user", "name", "author", "price", "description", "address", "is_published"]
+    fields = ["user", "name", "author", "price", "description", "address"]
 
     def post(self, request, *args, **kwargs):
         ad_data = json.loads(request.body)
@@ -102,7 +103,7 @@ class AdDetailView(DetailView):
     def get(self, *args, **kwargs):
         ad = self.get_object()
 
-        JsonResponse({
+        return JsonResponse({
             "id": ad.id,
             "name": ad.name,
             "author": ad.author,
@@ -110,6 +111,37 @@ class AdDetailView(DetailView):
             "description": ad.description,
             "address": ad.address,
             "is_published": ad.is_published,
+            "user_id": ad.user_id,
+
+        })
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AdUpdateView(UpdateView):
+    model = Ad
+    fields = ["name", "description", "price", "address", "is_published"]
+
+    def post(self, reqeust, *args, **kwargs):
+        super().post(reqeust, *args, **kwargs)
+
+        ad_data = json.loads(reqeust.body)
+        self.object.name = ad_data["name"]
+        self.object.description = ad_data["description"]
+        self.object.price = ad_data["price"]
+        self.object.address = ad_data["address"]
+        self.object.is_published = ad_data["is_published"]
+
+        self.object.save()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "name": self.object.name,
+            "author": self.object.author,
+            "price": self.object.price,
+            "description": self.object.description,
+            "address": self.object.address,
+            "is_published": self.object.is_published,
+            "user_id": self.object.user_id,
 
         })
 
