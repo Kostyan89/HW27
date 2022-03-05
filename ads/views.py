@@ -89,6 +89,8 @@ class AdListView(ListView):
     def get(self, request, *args, **kwargs):
         ads = Ad.objects.all()
 
+        self.object_list = self.object_list.order_by("price")
+
         response = []
         for ad in ads:
             response.append({
