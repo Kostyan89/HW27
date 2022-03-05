@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView, CreateView
 
 from ads.models import Ad, Category
 
@@ -19,7 +19,7 @@ class CategoryView(View):
             response.append({
                 "id": category.id,
                 "name": category.name,
-            }, safe=False)
+            })
 
         return JsonResponse(response, safe=False)
 
@@ -48,9 +48,11 @@ class CategoryDetailView(DetailView):
         })
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class AdView(View):
-    def get(self, request):
+
+class AdListView(ListView):
+    model = Ad
+
+    def get(self, request, *args, **kwargs):
         ads = Ad.objects.all()
 
         response = []
@@ -63,7 +65,13 @@ class AdView(View):
             })
         return JsonResponse(response, safe=False)
 
-    def post(self, request):
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AdCreateView(CreateView):
+    model = Ad
+    fields = ["user", "name", "author", "price", "description", "address", "is_published"]
+
+    def post(self, request, *args, **kwargs):
         ad_data = json.loads(request.body)
 
         ad = Ad.objects.create(
@@ -73,6 +81,7 @@ class AdView(View):
             description=ad_data["description"],
             address=ad_data["address"],
             is_published=ad_data["is_published"],
+            user_id=ad_data["user_id"],
         )
 
         return JsonResponse({
@@ -83,6 +92,7 @@ class AdView(View):
             "description": ad.description,
             "address": ad.address,
             "is_published": ad.is_published,
+            "user_id": ad.user_id,
         })
 
 
