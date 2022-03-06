@@ -87,19 +87,19 @@ class CategoryDetailView(DetailView):
 
 class AdListView(ListView):
     model = Ad
+    queryset = Ad.objects.all()
 
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
-        ads = Ad.objects.all()
 
         self.object_list = self.object_list.select_related('author').order_by('-price')
         paginator = Paginator(self.object_list, settings.TOTAL_ON_PAGE)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        response = []
+        ads = []
         for ad in page_obj:
-            response.append({
+            ads.append({
                 "id": ad.id,
                 "name": ad.name,
                 "author": ad.author,
@@ -109,6 +109,12 @@ class AdListView(ListView):
                 "is_published": ad.is_published,
                 "image": ad.image.url if ad.image else None,
             })
+
+        response = {
+            "items": ads,
+            "num_pages": page_obj.paginator.num_pages,
+            "total": page_obj.paginator.count,
+        }
         return JsonResponse(response, safe=False)
 
 
