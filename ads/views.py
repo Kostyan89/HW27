@@ -1,6 +1,6 @@
 import json
 
-from django.http import JsonResponse
+from django.http import JsonResponse, request
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -30,10 +30,10 @@ class CategoryUpdateView(UpdateView):
     model = Category
     fields = ["name"]
 
-    def post(self, reqeust, *args, **kwargs):
-        super().post(reqeust, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        super().post(request, *args, **kwargs)
 
-        ad_data = json.loads(reqeust.body)
+        ad_data = json.loads(request.body)
         self.object.name = ad_data["name"]
         self.object.save()
 
@@ -87,9 +87,9 @@ class AdListView(ListView):
     model = Ad
 
     def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
         ads = Ad.objects.all()
 
-        self.object_list = self.object_list.order_by("price")
 
         response = []
         for ad in ads:
@@ -148,6 +148,7 @@ class AdDetailView(DetailView):
             "address": ad.address,
             "is_published": ad.is_published,
             "user_id": ad.user_id,
+            "image": ad.image,
 
         })
 
@@ -157,10 +158,10 @@ class AdUpdateView(UpdateView):
     model = Ad
     fields = ["name", "description", "price", "address", "is_published"]
 
-    def post(self, reqeust, *args, **kwargs):
-        super().post(reqeust, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        super().post(request, *args, **kwargs)
 
-        ad_data = json.loads(reqeust.body)
+        ad_data = json.loads(request.body)
         self.object.name = ad_data["name"]
         self.object.description = ad_data["description"]
         self.object.price = ad_data["price"]
