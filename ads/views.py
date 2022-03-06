@@ -1,5 +1,6 @@
 import json
 
+from django.core.paginator import Paginator
 from django.http import JsonResponse, request
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -7,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from ads.models import Ad, Category
+from avito import settings
 
 
 class CategoryListView(ListView):
@@ -90,15 +92,22 @@ class AdListView(ListView):
         super().get(request, *args, **kwargs)
         ads = Ad.objects.all()
 
+        self.object_list = self.object_list.select_related('author').order_by('-price')
+        paginator = Paginator(self.object_list, settings.TOTAL_ON_PAGE)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
         response = []
-        for ad in ads:
+        for ad in page_obj:
             response.append({
                 "id": ad.id,
                 "name": ad.name,
                 "author": ad.author,
                 "price": ad.price,
                 "user_id": ad.user_id,
+                "description": ad.description,
+                "is_published": ad.is_published,
+                "image": ad.image.url if ad.image else None,
             })
         return JsonResponse(response, safe=False)
 

@@ -1,7 +1,7 @@
 [
     {
         "pk": 1,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Москва, м. Студенческая",
             "lat": "55.738472",
@@ -10,7 +10,7 @@
     },
     {
         "pk": 2,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Москва, м. Черкизовская",
             "lat": "55.804042",
@@ -19,7 +19,7 @@
     },
     {
         "pk": 3,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Санкт-Петербург, м. Невский проспект",
             "lat": "59.934719",
@@ -28,7 +28,7 @@
     },
     {
         "pk": 4,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Москва, м. Библиотека имени Ленина",
             "lat": "55.751275",
@@ -37,7 +37,7 @@
     },
     {
         "pk": 5,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Москва, м. Комсомольская",
             "lat": "55.775256",
@@ -46,7 +46,7 @@
     },
     {
         "pk": 6,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Санкт-Петербург, м. Чернышевская",
             "lat": "59.946097",
@@ -55,7 +55,7 @@
     },
     {
         "pk": 7,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Пушкин, Павловское шоссе 23/2",
             "lat": "59.707737",
@@ -64,7 +64,7 @@
     },
     {
         "pk": 8,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Сакнт-Петербург, м. Балтийская",
             "lat": "59.910822",
@@ -73,7 +73,7 @@
     },
     {
         "pk": 9,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Москва, м. Беломорская",
             "lat": "55.865056",
@@ -82,7 +82,7 @@
     },
     {
         "pk": 10,
-        "model": "ads.Location",
+        "model": "users.Location",
         "fields": {
             "name": "Москва, м. Электрозаодская",
             "lat": "55.781876",

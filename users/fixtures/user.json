@@ -1,7 +1,7 @@
 [
     {
         "pk": 1,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Павел",
             "last_name": "Никифоров",
@@ -14,7 +14,7 @@
     },
     {
         "pk": 2,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Альбина",
             "last_name": "Игнатьева",
@@ -27,7 +27,7 @@
     },
     {
         "pk": 3,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Иван",
             "last_name": "Сысоев",
@@ -40,7 +40,7 @@
     },
     {
         "pk": 4,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Марина",
             "last_name": "Беркутова",
@@ -53,7 +53,7 @@
     },
     {
         "pk": 5,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Галина",
             "last_name": "Иванова",
@@ -66,7 +66,7 @@
     },
     {
         "pk": 6,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Петр",
             "last_name": "Бойченко",
@@ -79,7 +79,7 @@
     },
     {
         "pk": 7,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Никита",
             "last_name": "",
@@ -92,7 +92,7 @@
     },
     {
         "pk": 8,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Виолетта",
             "last_name": "Петушок",
@@ -105,7 +105,7 @@
     },
     {
         "pk": 9,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Гульнара",
             "last_name": "Ибрагимова",
@@ -118,7 +118,7 @@
     },
     {
         "pk": 10,
-        "model": "ads.User",
+        "model": "users.User",
         "fields": {
             "first_name": "Борис",
             "last_name": "Зайка",
