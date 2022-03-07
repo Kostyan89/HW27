@@ -1,5 +1,5 @@
 from django.urls import path
-from ads import views
+from users import views
 
 urlpatterns = [
     path('', views.UserListView.as_view()),
