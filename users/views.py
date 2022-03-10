@@ -3,7 +3,6 @@ import json
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.http import JsonResponse
-from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -34,7 +33,7 @@ class UserListView(ListView):
                 "role": user.role,
                 "age": user.age,
                 "total_ads": user.total_ads,
-                "location": list(map(str, user.location.all()))
+                "locations": list(map(str, user.location.all()))
             })
 
         response = {
@@ -59,14 +58,14 @@ class UserDetailView(DetailView):
             "last_name": user.last_name,
             "role": user.role,
             "age": user.age,
-            "location": list(map(str, user.location.all()))
+            "locations": list(map(str, user.location.all()))
         })
 
 
 @method_decorator(csrf_exempt, name='dispatch')
 class UserCreateView(CreateView):
     model = User
-    fields = ["username", "password", "first_name", "last_name", "role", "age", "location"]
+    fields = ["username", "password", "first_name", "last_name", "role", "age", "locations"]
 
     def post(self, request, *args, **kwargs):
         user_data = json.loads(request.body)
@@ -80,7 +79,7 @@ class UserCreateView(CreateView):
             age=user_data["age"],
         )
 
-        for location_name in user_data["location"]:
+        for location_name in user_data["locations"]:
             location, _ = Location.objects.get_or_create(name=location_name)
             user.location.add(location)
 
@@ -91,14 +90,14 @@ class UserCreateView(CreateView):
             "last_name": user.last_name,
             "role": user.role,
             "age": user.age,
-            "location": list(map(str, user.location.all()))
+            "locations": list(map(str, user.location.all()))
         })
 
 
 @method_decorator(csrf_exempt, name='dispatch')
 class UserUpdateView(UpdateView):
     model = User
-    fields = ["username", "password", "first_name", "last_name", "role", "age", "location"]
+    fields = ["username", "password", "first_name", "last_name", "role", "age", "locations"]
 
     def patch(self, request, *args, **kwargs):
         super().post(request, *args, **kwargs)
@@ -110,7 +109,7 @@ class UserUpdateView(UpdateView):
         self.object.last_name = user_data["last_name"]
         self.object.age = user_data["age"]
 
-        for location_name in user_data["location"]:
+        for location_name in user_data["locations"]:
             location, _ = Location.objects.get_or_create(name=location_name)
             self.object.location.add(location)
 
@@ -122,7 +121,7 @@ class UserUpdateView(UpdateView):
             "last_name": self.object.last_name,
             "role": self.object.role,
             "age": self.object.age,
-            "location": list(map(str, self.object.location.all()))
+            "locations": list(map(str, self.object.location.all()))
         })
 
 
