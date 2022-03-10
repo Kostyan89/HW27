@@ -1,4 +1,3 @@
-
 from django.db import models
 
 from users.models import User
@@ -33,5 +32,3 @@ class Ad(models.Model):
 
     def __str__(self):
         return self.name
-
-

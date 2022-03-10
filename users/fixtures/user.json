@@ -3,6 +3,7 @@
         "pk": 1,
         "model": "users.User",
         "fields": {
+            "id": 1,
             "first_name": "Павел",
             "last_name": "Никифоров",
             "username": "pnikifirov",
@@ -16,6 +17,7 @@
         "pk": 2,
         "model": "users.User",
         "fields": {
+            "id": 2,
             "first_name": "Альбина",
             "last_name": "Игнатьева",
             "username": "abiba_1341",
@@ -29,6 +31,7 @@
         "pk": 3,
         "model": "users.User",
         "fields": {
+            "id": 3,
             "first_name": "Иван",
             "last_name": "Сысоев",
             "username": "vanya777",
@@ -42,6 +45,7 @@
         "pk": 4,
         "model": "users.User",
         "fields": {
+            "id": 4,
             "first_name": "Марина",
             "last_name": "Беркутова",
             "username": "orlanfree",
@@ -55,6 +59,7 @@
         "pk": 5,
         "model": "users.User",
         "fields": {
+            "id": 5,
             "first_name": "Галина",
             "last_name": "Иванова",
             "username": "galina_ivanova",
@@ -68,6 +73,7 @@
         "pk": 6,
         "model": "users.User",
         "fields": {
+            "id": 6,
             "first_name": "Петр",
             "last_name": "Бойченко",
             "username": "petr_bo",
@@ -81,6 +87,7 @@
         "pk": 7,
         "model": "users.User",
         "fields": {
+            "id": 7,
             "first_name": "Никита",
             "last_name": "",
             "username": "nikitapro",
@@ -94,6 +101,7 @@
         "pk": 8,
         "model": "users.User",
         "fields": {
+            "id": 8,
             "first_name": "Виолетта",
             "last_name": "Петушок",
             "username": "riverna",
@@ -107,6 +115,7 @@
         "pk": 9,
         "model": "users.User",
         "fields": {
+            "id": 9,
             "first_name": "Гульнара",
             "last_name": "Ибрагимова",
             "username": "gulnara321",
@@ -120,6 +129,7 @@
         "pk": 10,
         "model": "users.User",
         "fields": {
+            "id": 10,
             "first_name": "Борис",
             "last_name": "Зайка",
             "username": "dragon84",
