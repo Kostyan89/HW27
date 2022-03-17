@@ -95,6 +95,21 @@ class AdListView(ListView):
 
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
+        self.queryset =self.get_queryset()
+
+        category_id = request.GET.getlist("cat", [])
+        if category_id:
+            self.queryset = self.queryset.filter(cat__in=category_id)
+        if request.GET.get("text", None):
+            self.queryset = self.queryset.filter(text__contains=request.GET.get("text"))
+        if request.GET.get("location", None):
+            self.queryset = self.queryset.filter(author__location__name__icontains=request.GET.get("location"))
+        if request.GET.get("price_from", None):
+            self.queryset = self.queryset.filter(price__gte=request.GET.get("price_from"))
+        if request.GET.get("price_to", None):
+            self.queryset = self.queryset.filter(price__lte=request.GET.get("price_to"))
+
+
 
         self.object_list = self.object_list.select_related('author').order_by('-price')
         paginator = Paginator(self.object_list, settings.TOTAL_ON_PAGE)

@@ -1,6 +1,9 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
-from users.models import User
-from users.serializers import UserRetrieveSerializer, UserCreateSerializer, UserListSerializer, UserDeleteSerializer
+from rest_framework.viewsets import ModelViewSet
+
+from users.models import User, Location
+from users.serializers import UserRetrieveSerializer, UserCreateSerializer, UserListSerializer, UserDeleteSerializer, \
+    LocationSerializer
 
 
 class UserListView(ListAPIView):
@@ -26,3 +29,9 @@ class UserUpdateView(UpdateAPIView):
 class UserDeleteView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserDeleteSerializer
+
+
+class LocationViewSet(ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+
