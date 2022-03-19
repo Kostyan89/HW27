@@ -103,7 +103,7 @@ class AdListView(ListView):
         if r := request.GET.get("text", None):
             self.queryset = self.queryset.filter(text__contains=r)
         if r := request.GET.get("location", None):
-            self.queryset = self.queryset.filter(author__location__name__icontains=r)
+            self.queryset = self.queryset.filter(author__location__name__icontains=r).annotate('author')
         if r := request.GET.get("price_from", None):
             self.queryset = self.queryset.filter(price__gte=r)
         if r := request.GET.get("price_to", None):
