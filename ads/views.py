@@ -97,10 +97,10 @@ class AdListView(ListView):
         super().get(request, *args, **kwargs)
         self.queryset =self.get_queryset()
 
-        category_id = request.GET.getlist("cat", [])
+        category_id = request.GET.getlist("catt", [])
         if category_id:
             self.queryset = self.queryset.filter(cat__in=category_id)
-        if r := request.GET.get("text", None):
+        if r := request.GET.get("description", None):
             self.queryset = self.queryset.filter(text__contains=r)
         if r := request.GET.get("location", None):
             self.queryset = self.queryset.filter(author__location__name__icontains=r).annotate('author')
