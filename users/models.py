@@ -16,17 +16,16 @@ class Location(models.Model):
 
 
 class User(AbstractUser):
-    ROLES = [
-        ("member", "Пользователь"),
-        ("moderator", "Модератор"),
-        ("admin", "Админ"),
-    ]
+    HR = "hr"
+    EMPLOYEE = "employee"
+    UNKNOWN = "unknown"
+    ROLES = [(UNKNOWN, "Unknown"), (EMPLOYEE, "Employee"), (HR, "HR")]
 
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30, null=True, blank=True)
     username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=128)
-    role = models.CharField(max_length=9, choices=ROLES, default="member")
+    role = models.CharField(max_length=8, choices=ROLES, default=UNKNOWN)
     age = models.PositiveIntegerField(null=True)
     locations = models.ManyToManyField(Location)
 

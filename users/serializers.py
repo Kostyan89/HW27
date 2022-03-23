@@ -7,7 +7,7 @@ class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "username", "first_name", "last_name", "role", "age", "locations"]
+        fields = ["id", "username", "first_name", "last_name", "age", "locations"]
 
 
 class UserRetrieveSerializer(serializers.ModelSerializer):
