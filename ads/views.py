@@ -7,12 +7,12 @@ from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-from rest_framework.generics import RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
+from rest_framework.generics import RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from ads.models import Ad, Category
-from ads.permissions import AdCreatePermission
-from ads.serializers import AdSerializer
+from ads.models import Ad, Category, Compilation
+from ads.permissions import AdCreatePermission, CompilationUpdatePermission, IsAuthenticatedAndOwner
+from ads.serializers import AdSerializer, CompilationListSerializer, CompilationDetailSerializer, CompilationSerializer
 from avito import settings
 from users.models import User
 
@@ -185,3 +185,31 @@ class AdImageView(UpdateView):
             "image": self.object.image.url if self.object else None,
             "category_id": self.object.category_id,
         })
+
+
+class CompilationListView(ListAPIView):
+    queryset = Compilation.objects.all()
+    serializer_class = CompilationListSerializer
+
+
+class CompilationRetrieveView(RetrieveAPIView):
+    queryset = Compilation.objects.all()
+    serializer_class = CompilationDetailSerializer
+
+
+class CompilationCreateView(CreateAPIView):
+    queryset = Compilation.objects.all()
+    serializer_class = CompilationSerializer
+    permission_classes = [IsAuthenticated, CompilationUpdatePermission]
+
+
+class CompilationUpdateView(UpdateAPIView):
+    queryset = Compilation.objects.all()
+    serializer_class = CompilationSerializer
+    permission_classes = [IsAuthenticated, CompilationUpdatePermission, IsAuthenticatedAndOwner]
+
+
+class CompilationDeleteView(DestroyAPIView):
+    queryset = Compilation.objects.all()
+    serializer_class = CompilationSerializer
+    permission_classes = [IsAuthenticated, CompilationUpdatePermission]
