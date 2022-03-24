@@ -19,7 +19,7 @@ class User(AbstractUser):
     HR = "hr"
     EMPLOYEE = "employee"
     UNKNOWN = "unknown"
-    ROLES = [
+    ROLE = [
         (HR, "hr"),
         (EMPLOYEE, "employee"),
         (UNKNOWN, "unknown"),
@@ -29,7 +29,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=30, null=True, blank=True)
     username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=128)
-    role = models.CharField(max_length=9, choices=ROLES, default=UNKNOWN)
+    role = models.CharField(max_length=100, choices=ROLE, default=UNKNOWN)
     age = models.PositiveIntegerField(null=True)
     locations = models.ManyToManyField(Location)
 

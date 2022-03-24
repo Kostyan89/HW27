@@ -5,13 +5,13 @@ from django.db.models import Count
 from django.http import JsonResponse, request
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
-from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from ads.models import Ad, Category
+from ads.permissions import AdCreatePermission
 from ads.serializers import AdSerializer
 from avito import settings
 from users.models import User
@@ -140,38 +140,10 @@ class AdListView(ListView):
         return JsonResponse(response, safe=False)
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class AdCreateView(CreateView):
+class AdCreateView(CreateAPIView):
     model = Ad
-    fields = ["name", "author", "price", "description", "is_published", "category"]
-
-    def post(self, request, *args, **kwargs):
-        ad_data = json.loads(request.body)
-
-        author = get_object_or_404(User, ad_data["author_id"])
-        category = get_object_or_404(Category, ad_data["category_id"])
-
-        ad = Ad.objects.create(
-            name=ad_data["name"],
-            author=author,
-            price=ad_data["price"],
-            description=ad_data["description"],
-            is_published=ad_data["is_published"],
-            category=category,
-
-        )
-
-        return JsonResponse({
-            "id": ad.id,
-            "name": ad.name,
-            "author_id": ad.author_id,
-            "author": ad.author.first_name,
-            "price": ad.price,
-            "description": ad.description,
-            "is_published": ad.is_published,
-            "category_id": ad.category_id,
-            "image": ad.image.url if ad.image else None,
-        })
+    serializer_class = AdSerializer
+    permission_classes = [IsAuthenticated, AdCreatePermission]
 
 
 class AdDetailView(RetrieveAPIView):
