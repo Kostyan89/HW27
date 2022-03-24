@@ -25,13 +25,13 @@ class User(AbstractUser):
         (UNKNOWN, "unknown"),
     ]
 
-    first_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
     username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=128)
     role = models.CharField(max_length=100, choices=ROLE, default=UNKNOWN)
-    age = models.PositiveIntegerField(null=True)
-    locations = models.ManyToManyField(Location)
+    age = models.PositiveIntegerField(null=True, blank=True)
+    locations = models.ManyToManyField(Location, null=True, blank=True)
 
     class Meta:
         verbose_name = "Пользователь"
