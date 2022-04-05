@@ -3,6 +3,12 @@ from rest_framework import serializers
 from users.models import User, Location
 
 
+class CheckRamblerEmail:
+    def __call__(self, value):
+        if not value.endswith("rambler.ru"):
+            raise serializers.ValidationError("Rambler user can't register")
+
+
 class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -18,6 +24,8 @@ class UserRetrieveSerializer(serializers.ModelSerializer):
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(validators=[CheckRamblerEmail])
+
     class Meta:
         model = User
         exclude = ['locations']

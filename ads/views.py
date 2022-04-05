@@ -12,7 +12,8 @@ from rest_framework.permissions import IsAuthenticated
 
 from ads.models import Ad, Category, Compilation
 from ads.permissions import AdCreatePermission, CompilationUpdatePermission, IsAuthenticatedAndOwner
-from ads.serializers import AdSerializer, CompilationListSerializer, CompilationDetailSerializer, CompilationSerializer
+from ads.serializers import AdSerializer, CompilationListSerializer, CompilationDetailSerializer, CompilationSerializer, \
+    AdCreateSerializer
 from avito import settings
 from users.models import User
 
@@ -142,7 +143,7 @@ class AdListView(ListView):
 
 class AdCreateView(CreateAPIView):
     queryset = Ad
-    serializer_class = AdSerializer
+    serializer_class = AdCreateSerializer
     permission_classes = [IsAuthenticated, AdCreatePermission]
 
 
