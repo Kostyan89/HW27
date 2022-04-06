@@ -1,39 +1,42 @@
-import pytest
+from typing import List
 
-from users.models import User
+import pytest
+from faker import factory
+
+from ads.models import Ad
+from tests.factory import UserFactory
 
 
 @pytest.mark.django_db
-def test_create_ad(client, hr_token):
-    access_token, refresh_token = hr_token
-    expected_response = {
-        "id": 1,
-        "name": "test",
-        "price": 1,
-        "is_published": "False",
-        "author": user_id,
-        "description": "test",
-        "address": "test",
-        "category": None,
-        "image": None,
-    }
-
-    data = {
-        "name": "test",
-        "price": 1,
-        "is_published": "False",
-        "description": "test",
-        "address": "test",
-    }
-
+def test_ads_create(client, user, category):
+    assert not Ad.objects.all()
     response = client.post(
         "/ad/create/",
-        data,
+        {
+            "is_published": False,
+            "name": "testtesttest",
+            "price": "1.00",
+            "address": "test",
+            "author": user.id,
+            "category_id": category.id,
+            "description": "test"
+
+        },
         content_type="application/json",
-        HTTP_AUTHORIZATION="Bearer " + access_token
     )
+    ads: List[Ad] = Ad.objects.all()
+    # assert len(ads) == 1
 
-    assert response.status_code == 201
-    assert response.data == expected_response
-
+    # assert response.status_code == 201
+    assert response.json() == {
+        "id": ads[0].pk,
+        "is_published": False,
+        "name": "testtesttest",
+        "price": "1.00",
+        "description": "test",
+        "address": "test",
+        "image": None,
+        "author": user.id,
+        "category": None
+    }
 

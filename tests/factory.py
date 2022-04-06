@@ -1,6 +1,11 @@
 import factory
-from ads.models import Ad
+from ads.models import Ad, Category
 from users.models import User
+
+
+class CategoryFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Category
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -14,10 +19,17 @@ class UserFactory(factory.django.DjangoModelFactory):
 class AdFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Ad
-
-    name = "test"
-    price = 1
+    id = factory.Sequence(lambda n: '%s' % n)
+    name = "testtesttest"
+    price = "1.00"
     address = "test"
     author = factory.SubFactory(UserFactory)
     description = "test"
-    is_published = "False"
+    is_published = False
+    category = None
+
+
+
+
+
+

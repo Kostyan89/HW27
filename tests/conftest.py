@@ -1,9 +1,10 @@
 from pytest_factoryboy import register
 
-from tests.factory import AdFactory, UserFactory
+from tests.factory import AdFactory, UserFactory, CategoryFactory
 
 pytest_plugins = "tests.fixtures"
 
 
 register(AdFactory)
 register(UserFactory)
+register(CategoryFactory)
