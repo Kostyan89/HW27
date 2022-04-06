@@ -15,10 +15,10 @@ def test_ads_create(client, user, category):
         {
             "is_published": False,
             "name": "testtesttest",
-            "price": None,
-            "address": None,
+            "price": "1.00",
+            "address": "test",
             "author": user.id,
-            "category_id": None,
+            "category_id": category.id,
             "description": None
 
         },
@@ -29,14 +29,14 @@ def test_ads_create(client, user, category):
 
     assert response.status_code == 201
     assert response.json() == {
-        "id": ads[0].pk,
+        "id": 1,
         "is_published": False,
         "name": "testtesttest",
-        "price": None,
+        "price": "1.00",
         "description": None,
-        "address": None,
+        "address": "test",
         "image": None,
         "author": user.id,
-        "category_id": None
+        "category": 1
     }
 
