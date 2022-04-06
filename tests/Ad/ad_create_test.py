@@ -11,7 +11,7 @@ def test_create_ad(client, hr_token):
         "name": "test",
         "price": 1,
         "is_published": "False",
-        "author": User,
+        "author": user_id,
         "description": "test",
         "address": "test",
         "category": None,
