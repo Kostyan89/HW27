@@ -17,4 +17,4 @@ def hr_token(client, django_user_model):
         format='json'
     )
 
-    return response.data["access"], response.data["refresh"]
+    return response.data["access"]
