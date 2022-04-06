@@ -26,7 +26,7 @@ class AdFactory(factory.django.DjangoModelFactory):
     author = factory.SubFactory(UserFactory)
     description = "test"
     is_published = False
-    category = None
+    category = factory.SubFactory(CategoryFactory)
 
 
 

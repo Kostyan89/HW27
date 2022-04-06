@@ -20,11 +20,11 @@ class Category(models.Model):
 class Ad(models.Model):
     name = models.CharField(max_length=210, validators=[MinLengthValidator(10)])
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    price = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(0)])
-    description = models.TextField(null=True)
-    address = models.CharField(max_length=255)
+    price = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(0)], null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
     is_published = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     image = models.ImageField(upload_to="media/", null=True, blank=True)
 
     class Meta:

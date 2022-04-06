@@ -16,7 +16,7 @@ def test_ad_list(client):
             "name": ad.name,
             "price": '1.00',
             "description": "test",
-            "category_id": None,
+            "category_id": ad.category_id,
             "is_published": False,
             "image": None
         })

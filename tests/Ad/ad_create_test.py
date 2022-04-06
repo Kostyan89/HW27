@@ -15,28 +15,28 @@ def test_ads_create(client, user, category):
         {
             "is_published": False,
             "name": "testtesttest",
-            "price": "1.00",
-            "address": "test",
+            "price": None,
+            "address": None,
             "author": user.id,
-            "category_id": category.id,
-            "description": "test"
+            "category_id": None,
+            "description": None
 
         },
         content_type="application/json",
     )
     ads: List[Ad] = Ad.objects.all()
-    # assert len(ads) == 1
+    assert len(ads) == 1
 
-    # assert response.status_code == 201
+    assert response.status_code == 201
     assert response.json() == {
         "id": ads[0].pk,
         "is_published": False,
         "name": "testtesttest",
-        "price": "1.00",
-        "description": "test",
-        "address": "test",
+        "price": None,
+        "description": None,
+        "address": None,
         "image": None,
         "author": user.id,
-        "category": None
+        "category_id": None
     }
 
