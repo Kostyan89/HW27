@@ -7,6 +7,7 @@ def test_detail_ad(client, ad, hr_token):
         f"/ad/{ad.id}/",
         content_type="application/json",
         HTTP_AUTHORIZATION=f"Bearer {hr_token}")
+    assert response == "token"
     if ad.id:
         assert response.status_code == 200
         assert response.json() == {
@@ -22,3 +23,5 @@ def test_detail_ad(client, ad, hr_token):
         }
     else:
         assert response.status_code == 404
+
+

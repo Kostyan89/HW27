@@ -18,3 +18,4 @@ def hr_token(client, django_user_model):
     )
 
     return response.data["access"]
+
