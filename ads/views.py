@@ -201,16 +201,16 @@ class CompilationRetrieveView(RetrieveAPIView):
 class CompilationCreateView(CreateAPIView):
     queryset = Compilation.objects.all()
     serializer_class = CompilationSerializer
-    permission_classes = [IsAuthenticated, CompilationUpdatePermission]
+    permission_classes = [IsAuthenticated]
 
 
 class CompilationUpdateView(UpdateAPIView):
     queryset = Compilation.objects.all()
     serializer_class = CompilationSerializer
-    permission_classes = [IsAuthenticated, CompilationUpdatePermission, IsAuthenticatedAndOwner]
+    permission_classes = [IsAuthenticated, IsAuthenticatedAndOwner]
 
 
 class CompilationDeleteView(DestroyAPIView):
     queryset = Compilation.objects.all()
     serializer_class = CompilationSerializer
-    permission_classes = [IsAuthenticated, CompilationUpdatePermission]
+    permission_classes = [IsAuthenticated]

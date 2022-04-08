@@ -8,8 +8,7 @@ from tests.factory import UserFactory
 
 
 @pytest.mark.django_db
-def test_ads_create(client, user, category):
-    assert not Ad.objects.all()
+def test_ads_create(client, user, category, hr_token):
     response = client.post(
         "/ad/create/",
         {
@@ -19,13 +18,11 @@ def test_ads_create(client, user, category):
             "address": "test",
             "author": user.id,
             "category_id": category.id,
-            "description": None
+            "description": "test"
 
         },
         content_type="application/json",
-    )
-    ads: List[Ad] = Ad.objects.all()
-    assert len(ads) == 1
+        HTTP_AUTHORIZATION=f"Bearer {hr_token}")
 
     assert response.status_code == 201
     assert response.json() == {
@@ -33,10 +30,10 @@ def test_ads_create(client, user, category):
         "is_published": False,
         "name": "testtesttest",
         "price": "1.00",
-        "description": None,
+        "description": "test",
         "address": "test",
         "image": None,
         "author": user.id,
-        "category": 1
+        "category": category.id
     }
 
