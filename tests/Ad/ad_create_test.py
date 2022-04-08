@@ -17,7 +17,7 @@ def test_ads_create(client, user, category, hr_token):
             "price": "1.00",
             "address": "test",
             "author": user.id,
-            "category_id": category.id,
+            "category_id": None,
             "description": "test"
 
         },
@@ -34,6 +34,6 @@ def test_ads_create(client, user, category, hr_token):
         "address": "test",
         "image": None,
         "author": user.id,
-        "category": category.id
+        "category": None
     }
 
